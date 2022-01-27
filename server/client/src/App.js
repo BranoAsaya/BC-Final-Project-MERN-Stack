@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from './components/Layout/Layout';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Navbar, SideBar, Footer } from './components/Layout/Layout.js'
 import { Home, News, About, Contact, Convert, Exchange, Services, Trending, SignUp, LogIn } from "./components/Pages/pages.js";
-
+import axios from 'axios';
 
 function App() {
-  
+
+
+
   return (
     <>
       <Navbar />

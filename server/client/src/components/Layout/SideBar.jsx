@@ -13,7 +13,7 @@ function SideBar({ page }) {
                 <Link to={'/Services'}>
                   {' '}
                   <button className=" button is-info is-outlined  ">
-                    SERVICES
+                  Services&nbsp;&nbsp;
                   </button>
                 </Link>
               </li>
@@ -21,7 +21,7 @@ function SideBar({ page }) {
                 <Link to={'/Convert'}>
                   {' '}
                   <button className="  button is-info is-outlined ">
-                    CONVERT
+                  Convert&nbsp;&nbsp;
                   </button>
                 </Link>
               </li>

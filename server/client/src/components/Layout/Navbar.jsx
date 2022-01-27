@@ -61,10 +61,10 @@ function Navbar() {
                 </Link>
                 <hr className="navbar-divider" />
                 <Link to={'/Convert'} className="navbar-item is-hidden-tablet">
-                  CONVERT
+                Convert
                 </Link>
                 <Link to={'/Services'} className="navbar-item is-hidden-tablet">
-                  SERVICES
+                Services
                 </Link>
                 <Link to={'/Exchange'} className="navbar-item is-hidden-tablet">
                   Exchange
