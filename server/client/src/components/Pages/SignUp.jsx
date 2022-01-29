@@ -1,19 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react'
-import UseAxios from './UseAxios'
-const FB_KEY = process.env.REACT_APP_FB_KEY
+import React, { useState, useEffect, useRef ,useContext} from 'react'
+import { Redirect } from 'react-router-dom'
+import userContext from '../../Context/userContext'
+import UseAxios from '../CustomHooks/UseAxios'
+import setLocalStorage from '../CustomHooks/setLocalStorage'
 
 function SignUp() {
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
   const confirmPasswordInput = useRef(null)
   const [isDisabled, setIsDisabled] = useState(true)
-  const [data, setData] = useState(null)
+  const [userData, setUserData] = useState(null)
+  const { state, dispatch } = useContext(userContext)
+  const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FB_KEY}`
-  // const data = { email: 'my12@gmail.com', password: '123456' }
-  const { response, error, loading } = UseAxios(url, data)
-console.log(response);
+  const { response, error, loading } = UseAxios(url, userData)
+
+  useEffect(() => {
+    if (response?.email) {
+      setLocalStorage({ key: 'email', value: response.email })
+      dispatch({type:'auth',value:true})
+    }
+    
+    if(error&& !response?.email){
+      alert(`${emailInput.current.value} already registered`)
+     }
+     return ()=>{}
+  }, [response,error])
+
   const handelSubmit = () => {
-    setData({
+    setUserData({
       email: emailInput.current.value,
       password: passwordInput.current.value,
     })
@@ -33,6 +48,7 @@ console.log(response);
 
   return (
     <>
+    {response?.email?<Redirect to={'/'}/>:''}
       <article
         className="tile is-child box"
         style={{
@@ -69,15 +85,11 @@ console.log(response);
                     ref={passwordInput}
                     name="password"
                     onChange={handelChange}
-                    title="This field should not be left blank."
-                    onBlur={() => {
-                      if (passwordInput.current.value.length <= 5) {
-                        alert('password must be at least 6 characters')
-                      }
-                    }}
+                    title="password must be at least 6 characters"
                   />
                 </div>
               </div>
+
               <div className="field">
                 <div className="control">
                   <input
@@ -92,7 +104,9 @@ console.log(response);
                   />
                 </div>
               </div>
+
               <br />
+
               <button
                 className="button is-block is-fullwidth is-primary is-medium is-rounded"
                 type="button"

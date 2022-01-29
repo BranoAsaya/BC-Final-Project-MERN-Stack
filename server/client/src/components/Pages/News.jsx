@@ -1,6 +1,8 @@
-import React from 'react';
-
+import React,{useContext} from 'react';
+import userContext from '../../Context/userContext';
 function News() {
+  const { state, dispatch } = useContext(userContext)
+  
   return(
     <article
       className="tile is-child box"

@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useState } from 'react'
+import userContext from '../../Context/userContext'
 import { Link } from 'react-router-dom'
 function Navbar() {
-  const [isActive, setisActive] = useState(false)
+  const [isActive, setIsActive] = useState(false)
+  const { state, dispatch } = useContext(userContext)
 
+  // console.log(state.auth)
   return (
     <>
       <nav
@@ -27,7 +31,7 @@ function Navbar() {
             aria-expanded="false"
             data-target="navbarBasicExample"
             onClick={() => {
-              setisActive(!isActive)
+              setIsActive(!isActive)
             }}
           >
             <span aria-hidden="true" />
@@ -49,9 +53,7 @@ function Navbar() {
               News
             </Link>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a  className="navbar-link">
-                More
-              </a>
+              <a className="navbar-link">More</a>
               <div className="navbar-dropdown">
                 <Link to={'/About'} className="navbar-item">
                   About
@@ -61,10 +63,10 @@ function Navbar() {
                 </Link>
                 <hr className="navbar-divider" />
                 <Link to={'/Convert'} className="navbar-item is-hidden-tablet">
-                Convert
+                  Convert
                 </Link>
                 <Link to={'/Services'} className="navbar-item is-hidden-tablet">
-                Services
+                  Services
                 </Link>
                 <Link to={'/Exchange'} className="navbar-item is-hidden-tablet">
                   Exchange
@@ -75,17 +77,34 @@ function Navbar() {
               </div>
             </div>
           </div>
+
           <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <Link to={'/SignUp'} className="button is-link">
-                  <strong>Sign up</strong>
-                </Link>
-                <Link to={'/LogIn'} className="button is-light">
-                  Log in
-                </Link>
+            {state.auth ? (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                  <i className="fa fa-user"></i>Account
+                </a>
+                <div className="navbar-dropdown">
+                  <a className="navbar-item">Settings</a>
+                  <hr className="navbar-divider" />
+                  <a className="navbar-item" onClick={()=>{
+                     dispatch({type:'auth',value:false})
+                     localStorage.setItem('email',null)
+                  }} >Logout</a>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="navbar-item">
+                <div className="buttons">
+                  <Link to={'/SignUp'} className="button is-link">
+                    <strong>Sign up</strong>
+                  </Link>
+                  <Link to={'/LogIn'} className="button is-light">
+                    Log in
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </nav>
