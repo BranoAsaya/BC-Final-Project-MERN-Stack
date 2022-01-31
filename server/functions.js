@@ -4,27 +4,29 @@ import axios from "axios";
 dotenv.config()
 const MongoClient = mongodb.MongoClient
 const ObjectId = mongodb.ObjectId
-const url = process.env.MONGO_URI 
+const url = process.env.MONGO_URI
 const client = MongoClient.connect(url)
+const DB = 'Data'
+const collection = 'Users'
 
-function APIdatabase(req, res, DB, collection) {
-    client
-      .then((data) => {
-        console.log("connected");
-        let database = data.db(DB);
-        database
-          .collection(collection)
-          .find({})
-          .toArray()
-          .then((docs) => {
-            res.send(docs);
-          });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+function UsersDatabase(req, res) {
+  client
+    .then((data) => {
+      const database = data.db(DB);
+      database
+        .collection(collection)
+        // .insertOne({email:'tes2',data:[]})
+        .find({})
+        .toArray()
+        .then((docs) => {
+         res.send(docs)
+        });
+    })
+    .catch((err) => {
+     throw err
+    });
+}
 
 
 
-export{APIdatabase}
+export { UsersDatabase }

@@ -1,11 +1,14 @@
 import React from 'react'
+import {BgContact } from '../Tools/getImges'
 
 function Contact() {
+
   return (
     <article
         className="tile is-child box"
         style={{
-          backgroundImage: 'url(https://i.ibb.co/xzDmw0G/backgff.png)',
+          background:'#d0f3ff',
+          backgroundImage: `url(${BgContact})`,
           backgroundSize: 'cover',
         }}
       >

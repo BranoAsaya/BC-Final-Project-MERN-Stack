@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef ,useContext} from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import userContext from '../../Context/userContext'
 import UseAxios from '../CustomHooks/UseAxios'
-import setLocalStorage from '../CustomHooks/setLocalStorage'
+import setLocalStorage from '../Tools/setLocalStorage'
+import { Link } from 'react-router-dom'
+import { BgLogIn } from '../Tools/getImges'
 
 function LogIn() {
   const emailInput = useRef(null)
@@ -13,18 +15,18 @@ function LogIn() {
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
-console.log(response);
+  console.log(response)
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
-      dispatch({type:'auth',value:true})
+      dispatch({ type: 'auth', value: true })
     }
-    
-    if(error&& !response?.email){
+
+    if (error && !response?.email) {
       alert('email/Password incorrect')
-     }
-     return ()=>{}
-  }, [response,error])
+    }
+    return () => {}
+  }, [response, error])
 
   const handelSubmit = () => {
     setUserData({
@@ -36,7 +38,7 @@ console.log(response);
     if (
       emailInput.current.value !== '' &&
       passwordInput.current.value !== '' &&
-      passwordInput.current.value.length > 5 
+      passwordInput.current.value.length > 5
     ) {
       setIsDisabled(false)
     } else {
@@ -46,11 +48,12 @@ console.log(response);
 
   return (
     <>
-    {response?.email?<Redirect to={'/'}/>:''}
+      {response?.email ? <Redirect to={'/'} /> : ''}
       <article
         className="tile is-child box"
         style={{
-          backgroundImage: 'url(https://i.ibb.co/zHyqwCN/newbg11.png)',
+          background: '#6148bf',
+          backgroundImage: `url(${BgLogIn})`,
           backgroundSize: 'cover',
         }}
       >
@@ -88,8 +91,6 @@ console.log(response);
                 </div>
               </div>
 
-       
-
               <br />
 
               <button
@@ -112,9 +113,9 @@ console.log(response);
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <a href="#" className="has-text-white">
-                    Already a user{' '}
-                  </a>
+                  <Link to={'/SignUp'} className="has-text-white">
+                    already registered
+                  </Link>
                 </div>
               </div>
             </nav>

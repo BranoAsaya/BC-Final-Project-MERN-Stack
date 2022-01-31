@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Navbar() {
   const [isActive, setIsActive] = useState(false)
   const { state, dispatch } = useContext(userContext)
-
+  const closeNav=()=>setIsActive(!isActive)
   // console.log(state.auth)
   return (
     <>
@@ -30,9 +30,7 @@ function Navbar() {
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
-            onClick={() => {
-              setIsActive(!isActive)
-            }}
+            onClick={closeNav}
           >
             <span aria-hidden="true" />
             <span aria-hidden="true" />
@@ -44,34 +42,35 @@ function Navbar() {
           className={`navbar-menu ${isActive ? 'is-active' : ''}`}
         >
           <div className="navbar-start">
-            <Link to={'/'} className="navbar-item">
-              <i className="fa fa-home"></i>
+            <Link to={'/'} className="navbar-item"  onClick={closeNav}
+            >
+              <i className="fa fa-home" ></i>
               Home
             </Link>
-            <Link to={'/News'} className="navbar-item">
+            <Link to={'/News'} className="navbar-item" onClick={closeNav}>
               <i className="fa fa-rss-square"></i>
               News
             </Link>
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">More</a>
               <div className="navbar-dropdown">
-                <Link to={'/About'} className="navbar-item">
+                <Link to={'/About'} className="navbar-item" onClick={closeNav}>
                   About
                 </Link>
-                <Link to={'/Contact'} className="navbar-item">
+                <Link to={'/Contact'} className="navbar-item" onClick={closeNav}>
                   Contact
                 </Link>
                 <hr className="navbar-divider" />
-                <Link to={'/Convert'} className="navbar-item is-hidden-tablet">
+                <Link to={'/Convert'} className="navbar-item is-hidden-tablet" onClick={closeNav}>
                   Convert
                 </Link>
-                <Link to={'/Services'} className="navbar-item is-hidden-tablet">
+                <Link to={'/Services'} className="navbar-item is-hidden-tablet" onClick={closeNav}>
                   Services
                 </Link>
-                <Link to={'/Exchange'} className="navbar-item is-hidden-tablet">
+                <Link to={'/Exchange'} className="navbar-item is-hidden-tablet" onClick={closeNav}>
                   Exchange
                 </Link>
-                <Link to={'/Trending'} className="navbar-item is-hidden-tablet">
+                <Link to={'/Trending'} className="navbar-item is-hidden-tablet" onClick={closeNav}>
                   Trending
                 </Link>
               </div>
@@ -90,16 +89,17 @@ function Navbar() {
                   <a className="navbar-item" onClick={()=>{
                      dispatch({type:'auth',value:false})
                      localStorage.setItem('email',null)
+                     closeNav()
                   }} >Logout</a>
                 </div>
               </div>
             ) : (
               <div className="navbar-item">
                 <div className="buttons">
-                  <Link to={'/SignUp'} className="button is-link">
+                  <Link to={'/SignUp'} className="button is-link" onClick={closeNav}>
                     <strong>Sign up</strong>
                   </Link>
-                  <Link to={'/LogIn'} className="button is-light">
+                  <Link to={'/LogIn'} className="button is-light" onClick={closeNav}>
                     Log in
                   </Link>
                 </div>

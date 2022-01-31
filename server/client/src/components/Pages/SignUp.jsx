@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef ,useContext} from 'react'
 import { Redirect } from 'react-router-dom'
 import userContext from '../../Context/userContext'
 import UseAxios from '../CustomHooks/UseAxios'
-import setLocalStorage from '../CustomHooks/setLocalStorage'
+import setLocalStorage from '../Tools/setLocalStorage'
+import { Link } from 'react-router-dom'
+import {BgSignUp} from '../Tools/getImges'
 
 function SignUp() {
   const emailInput = useRef(null)
@@ -14,19 +16,16 @@ function SignUp() {
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
-
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({type:'auth',value:true})
     }
-    
     if(error&& !response?.email){
       alert(`${emailInput.current.value} already registered`)
      }
      return ()=>{}
   }, [response,error])
-
   const handelSubmit = () => {
     setUserData({
       email: emailInput.current.value,
@@ -52,13 +51,14 @@ function SignUp() {
       <article
         className="tile is-child box"
         style={{
-          backgroundImage: 'url(https://i.ibb.co/zHyqwCN/newbg11.png)',
+          background: '#8181e1',
+          backgroundImage:`url(${BgSignUp})`,
           backgroundSize: 'cover',
         }}
       >
         <div className="hero-body has-text-centered">
           <div className="login">
-            <img src="https://i.ibb.co/fkn9XYz/user.png" width="32px" />
+            <img src="https://i.ibb.co/fkn9XYz/user.png" width="32px" alt=''/>
             <form>
               <div className="field">
                 <div className="control">
@@ -127,9 +127,9 @@ function SignUp() {
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <a href="#" className="has-text-white">
+                  <Link to={'/LogIn'} className="has-text-white">
                     Already a user{' '}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </nav>
