@@ -1,25 +1,33 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
+import { UseAxios,useFetch } from '../CustomHooks/getHooks'
 import userContext from '../../Context/userContext'
-import UseAxios from '../CustomHooks/UseAxios'
-import setLocalStorage from '../Tools/setLocalStorage'
+// import UseAxios from '../CustomHooks/UseAxios'
+import {setLocalStorage,getAxios} from '../Tools/Tools'
 import { Link } from 'react-router-dom'
 import { BgLogIn } from '../Tools/getImges'
+
 
 function LogIn() {
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
-  const [isDisabled, setIsDisabled] = useState(true)
   const [userData, setUserData] = useState(null)
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [newUrl, setNewUrl] = useState(null)
   const { state, dispatch } = useContext(userContext)
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
-  console.log(response)
+  const { UsersData } = state
+
+  const data = useFetch(newUrl) 
+  console.log(data);
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({ type: 'auth', value: true })
+      const obj=UsersData.find((user)=>user.email === response.email)
+      setNewUrl(`/Users/FindUser/${obj._id}`)
     }
 
     if (error && !response?.email) {

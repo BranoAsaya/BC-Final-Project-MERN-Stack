@@ -1,19 +1,22 @@
-import React, { useState, useEffect ,useReducer} from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import Layout from './components/Layout/Layout.jsx';
-import userContext from './Context/userContext.jsx';
-import { Reducer, initialState } from './Reducer/dataReducer.jsx'
+import userContext from './Context/userContext.js';
+import { Reducer, initialState } from './Reducer/dataReducer.js'
 import useFetch from './components/CustomHooks/useFetch.jsx';
-
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState)
-  // const {data} = useFetch('/Users')
-
+  const { data } = useFetch('/Users')
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: 'UsersData', value: data })
+    }
+  }, [data])
   return (
     <>
-    <userContext.Provider value={{state, dispatch}}>
-       <Layout/>
-    </userContext.Provider>
-    
+      <userContext.Provider value={{ state, dispatch }}>
+        <Layout />
+      </userContext.Provider>
+
     </>
   );
 }

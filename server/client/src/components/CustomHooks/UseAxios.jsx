@@ -6,7 +6,7 @@ const UseAxios = (url, data) => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
   const fetchData = () => {
-   if(data === null)return    
+    if (!data) return
     axios
       .post(url, data)
       .then((res) => {

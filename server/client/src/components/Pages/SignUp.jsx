@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef ,useContext} from 'react'
 import { Redirect } from 'react-router-dom'
 import userContext from '../../Context/userContext'
+import {setLocalStorage,axiosPost} from '../Tools/Tools'
 import UseAxios from '../CustomHooks/UseAxios'
-import setLocalStorage from '../Tools/setLocalStorage'
+// import setLocalStorage from '../Tools/setLocalStorage'
 import { Link } from 'react-router-dom'
 import {BgSignUp} from '../Tools/getImges'
 
@@ -16,10 +17,12 @@ function SignUp() {
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
+
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({type:'auth',value:true})
+      axiosPost('/AddUser',{email:response.email,data:response})
     }
     if(error&& !response?.email){
       alert(`${emailInput.current.value} already registered`)

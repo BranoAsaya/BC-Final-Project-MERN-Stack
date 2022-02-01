@@ -2,7 +2,8 @@
   "name": "bc",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://0.0.0.0:5000",
+  "secure": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -40,6 +41,9 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
+    "install": "^0.13.0",
+    "node-sass": "^7.0.1",
+    "npm": "^8.4.0"
   }
 }

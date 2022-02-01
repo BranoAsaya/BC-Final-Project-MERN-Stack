@@ -43,55 +43,7 @@ function Home() {
   <div className="level">
     <div className="level-left">
       <div className="level-item">
-        <h2 className="subtitle">Featured Articles</h2>
-      </div>
-    </div>
-    <div className="level-right">
-      <div className="level-item">
-        <div className="field has-addons has-addons-centered">
-          <div className="control">
-            <a className="button is-small" disabled="">
-              <svg
-                className="svg-inline--fa fa-chevron-left fa-w-8"
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="far"
-                data-icon="chevron-left"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 512"
-                data-fa-i2svg=""
-              >
-                <path
-                  fill="currentColor"
-                  d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"
-                />
-              </svg>
-              {/* <i class="far fa-chevron-left"></i> Font Awesome fontawesome.com */}
-            </a>
-          </div>
-          <div className="control">
-            <a className="button is-small">
-              <svg
-                className="svg-inline--fa fa-chevron-right fa-w-8"
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="far"
-                data-icon="chevron-right"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 512"
-                data-fa-i2svg=""
-              >
-                <path
-                  fill="currentColor"
-                  d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"
-                />
-              </svg>
-              {/* <i class="far fa-chevron-right"></i> Font Awesome fontawesome.com */}
-            </a>
-          </div>
-        </div>
+        <h2 className="subtitle is-underlined	has-text-weight-bold">Explore</h2>
       </div>
     </div>
   </div>
@@ -99,37 +51,37 @@ function Home() {
     <div className="column is-3">
       <article>
         <figure className="image is-3by3">
-          <img src="https://cdn-icons-png.flaticon.com/512/2856/2856964.png" />
+          <img src="https://cdn-icons-png.flaticon.com/512/6738/6738869.png" />
         </figure>
-        <h2 className="subtitle">Creating a Group</h2>
+        <h2 className="subtitle has-text-centered	has-text-weight-bold	">Technical Analysis</h2>
         <span className="tag is-rounded">Users &amp; Groups</span>
       </article>
     </div>
     <div className="column is-3">
       <article>
         <figure className="image is-3by3">
-          <img src="https://cdn-icons-png.flaticon.com/512/6698/6698835.png" />
+          <img src="https://cdn-icons-png.flaticon.com/512/6738/6738872.png" />
         </figure>
-        {/* <a class="button is-primary is-block is-alt is-large" href="#" >New Post</a> */}
-        <span className="tag is-rounded">Billing &amp; Accounts</span>
+        <h2 className="subtitle has-text-centered	has-text-weight-bold	">Blockchain News</h2>
+        <span className="tag is-rounded">Network &amp; Research</span>
       </article>
     </div>
     <div className="column is-3">
       <article>
         <figure className="image is-3by3">
-          <img src="https://cdn-icons.flaticon.com/png/512/5675/premium/5675014.png?token=exp=1643665863~hmac=cb11b47a19b5f4228c8ec72c111389ed" />
+          <img src="https://cdn-icons-png.flaticon.com/512/6738/6738843.png" />
         </figure>
-        <h2 className="subtitle">Changing the Account </h2>
-        <span className="tag is-rounded">Billing &amp; Accounts</span>
+        <h2 className="subtitle has-text-centered	has-text-weight-bold	">Convert Crypto</h2>
+        <span className="tag is-rounded">Convert &amp; Accounts</span>
       </article>
     </div>
     <div className="column is-3">
       <article>
         <figure className="image is-3by3">
-          <img src="https://cdn-icons-png.flaticon.com/512/6698/6698711.png" />
+          <img src="https://cdn-icons-png.flaticon.com/512/6738/6738870.png" />
         </figure>
-        <h2 className="subtitle">Adding Internal Notes</h2>
-        <span className="tag is-rounded">Billing &amp; Accounts</span>
+        <h2 className="subtitle has-text-centered	has-text-weight-bold	">Daily Transactions</h2>
+        <span className="tag is-rounded">Gainers &amp; Losers</span>
       </article>
     </div>
   </div>

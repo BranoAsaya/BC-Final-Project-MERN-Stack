@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 const useFetch = (url) => {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [hasError, setHasError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 useEffect(() => {
+    if (!url) return 
     const fetchData = async () => {
       setIsLoading(true)
       try {
@@ -14,18 +14,16 @@ useEffect(() => {
         if (response.ok) {
           setData(result)
         } else {
-          setHasError(true)
           setErrorMessage(result)
         }
         setIsLoading(false)
       } catch (err) {
-        setHasError(true)
         setErrorMessage(err.message)
         setIsLoading(false)
       }
     }
     fetchData()
   }, [url])
-return { data, isLoading, hasError, errorMessage }
+return { data, isLoading, errorMessage }
 }
 export default useFetch
