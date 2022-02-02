@@ -1,6 +1,8 @@
-import React from 'react'
-
+import React,{useContext} from 'react';
+import userContext from '../../Context/userContext';
 function Home() {
+  const { state, dispatch } = useContext(userContext)
+console.log(state);
   return (
     <article
       className="tile is-child box"

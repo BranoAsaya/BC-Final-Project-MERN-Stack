@@ -17,4 +17,5 @@ if (!email) {
 export const initialState = {
     auth: isAuth,
     UsersData: [],
+    User:{},
 }

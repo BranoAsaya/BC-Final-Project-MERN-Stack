@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { UseAxios,useFetch } from '../CustomHooks/getHooks'
 import userContext from '../../Context/userContext'
-// import UseAxios from '../CustomHooks/UseAxios'
 import {setLocalStorage,getAxios} from '../Tools/Tools'
 import { Link } from 'react-router-dom'
 import { BgLogIn } from '../Tools/getImges'
@@ -19,15 +18,25 @@ function LogIn() {
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
   const { UsersData } = state
-
-  const data = useFetch(newUrl) 
-  console.log(data);
+  const {data,refetch} = useFetch(newUrl) 
+  useEffect(()=>{
+   if(data){
+      dispatch({ type:'User', value: data })
+   
+  } 
+  return ()=>{if(data){
+    dispatch({ type:'User', value: data })
+ 
+}}
+  },[data])
+  
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({ type: 'auth', value: true })
       const obj=UsersData.find((user)=>user.email === response.email)
-      setNewUrl(`/Users/FindUser/${obj._id}`)
+      refetch(`/Users/FindUser/${obj._id}`)
+      
     }
 
     if (error && !response?.email) {
@@ -56,7 +65,7 @@ function LogIn() {
 
   return (
     <>
-      {response?.email ? <Redirect to={'/'} /> : ''}
+      {response?.email && data? <Redirect to={'/'} /> : ''}
       <article
         className="tile is-child box"
         style={{

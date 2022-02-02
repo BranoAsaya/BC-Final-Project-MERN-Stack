@@ -88,8 +88,10 @@ function Navbar() {
                   <hr className="navbar-divider" />
                   <a className="navbar-item" onClick={()=>{
                      dispatch({type:'auth',value:false})
+                     dispatch({type:'User',value:{}})
                      localStorage.setItem('email',null)
                      closeNav()
+
                   }} >Logout</a>
                 </div>
               </div>
