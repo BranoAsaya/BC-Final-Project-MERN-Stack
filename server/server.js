@@ -15,9 +15,7 @@ const DBname="Data";
 app.use(express.json());
 
 
-// app.get("/", (req, res) => {
-//  res.status(200).send('hello')
-// });
+
 app.get("/Users", (req, res) => {
   Database.UsersData(req, res);
 });
