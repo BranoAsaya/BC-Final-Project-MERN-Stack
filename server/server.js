@@ -6,7 +6,13 @@ const app = express();
 const PORT = process.env.PORT ;
 const DBname="Data";
 
-
+if(process.env.NODE_ENV==='production')
+{
+    app.use(express.static(path.join(__dirname,"client","build")));
+    app.get("*",(req,resp)=>{
+        resp.sendFile(path.join(__dirname,"client","build","index.html"));
+    })
+}
 app.use(express.json());
 
 app.get("/Users", (req, res) => {
@@ -19,13 +25,7 @@ app.get("/Users/FindUser/:id", (req, res) => {
   Database.FindUser(req, res);
 });
 
-if(process.env.NODE_ENV==='production')
-{
-    app.use(express.static(path.join(__dirname,"client","build")));
-    app.get("*",(req,resp)=>{
-        resp.sendFile(path.join(__dirname,"client","build","index.html"));
-    })
-}
+
 
 app.listen(PORT);
 
