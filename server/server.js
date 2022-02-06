@@ -4,18 +4,16 @@ import Database from './DBfunctions.js'
 import path from 'path'
 dotenv.config()
 const app = express();
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT ||  5000;
 const DBname="Data";
 
-if(process.env.NODE_ENV==='production')
-{
+app.use(express.json());
+
     app.use(express.static(path.join(__dirname,"client","build")));
     app.get("*",(req,resp)=>{
         resp.sendFile(path.join(__dirname,"client","build","index.html"));
     })
-}
 
-app.use(express.json());
 app.get("/", (req, res) => {
  res.status(200).send('hello')
 });
