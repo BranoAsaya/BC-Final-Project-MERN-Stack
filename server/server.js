@@ -6,7 +6,7 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
-console.log(path);
+console.log(path.join(__dirname,"client","build"));
 dotenv.config()
 const app = express();
 const PORT = process.env.PORT ||  5000;
@@ -28,9 +28,9 @@ app.get("/Users/FindUser/:id", (req, res) => {
   Database.FindUser(req, res);
 });
     app.use(express.static(path.join(__dirname,"client","build")));
-//     app.get("*",(req,resp)=>{
-//         resp.sendFile(path.join(__dirname,"client","build","index.html"));
-//     })
+    app.get("*",(req,resp)=>{
+        resp.sendFile(path.join(__dirname,"client","build","index.html"));
+    })
 
 
 
