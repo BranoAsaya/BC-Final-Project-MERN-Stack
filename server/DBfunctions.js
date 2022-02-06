@@ -18,11 +18,12 @@ function UsersData(req, res) {
         .find({})
         .toArray()
         .then((docs) => {
-         res.send(docs)
+          res.send(docs)
         });
     })
     .catch((err) => {
-     throw err
+      res.status(400).send({ error: { message: 'Bad Request' } });
+      throw err
     });
 }
 function AddUser(req, res) {
@@ -34,11 +35,12 @@ function AddUser(req, res) {
         .collection(collection)
         .insertOne(body)
         .then((docs) => {
-         res.send(docs)
+          res.send(docs)
         });
     })
     .catch((err) => {
-     throw err
+      res.status(400).send({ error: { message: 'Bad Request' } });
+      throw err
     });
 }
 function FindUser(req, res) {
@@ -51,13 +53,14 @@ function FindUser(req, res) {
         .collection(collection)
         .findOne(object)
         .then((docs) => {
-         res.send(docs)
+          res.send(docs)
         });
     })
     .catch((err) => {
-     throw err
+      res.status(404).send({ error: { message: 'No  Found' } });
+      throw err
     });
 }
 
-const Database ={UsersData,AddUser,FindUser}
+const Database = { UsersData, AddUser, FindUser }
 export default Database
