@@ -1,6 +1,7 @@
 import  express  from "express";
 import dotenv from "dotenv"
 import Database from './DBfunctions.js'
+import path from 'path'
 dotenv.config()
 const app = express();
 const PORT = process.env.PORT ;
@@ -13,8 +14,11 @@ if(process.env.NODE_ENV==='production')
         resp.sendFile(path.join(__dirname,"client","build","index.html"));
     })
 }
-app.use(express.json());
 
+app.use(express.json());
+app.get("/", (req, res) => {
+ res.status(200).send('hello')
+});
 app.get("/Users", (req, res) => {
   Database.UsersData(req, res);
 });
