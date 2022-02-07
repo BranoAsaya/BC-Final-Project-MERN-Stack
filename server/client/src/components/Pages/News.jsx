@@ -1,126 +1,110 @@
-import React,{useContext} from 'react';
-import userContext from '../../Context/userContext';
+import React, { useContext, useEffect, useState } from 'react'
+import userContext from '../../Context/userContext'
+import { useRequestAxios } from '../CustomHooks/getHooks'
+import './News.css'
+
 function News() {
   const { state, dispatch } = useContext(userContext)
-  return(
+  const { data, loading, error, refetch } = useRequestAxios(null)
+
+  const options = {
+    method: 'GET',
+    url: 'https://free-news.p.rapidapi.com/v1/search',
+    params: { q: 'cryptocurrency', lang: 'en' },
+    headers: {
+      'x-rapidapi-host': 'free-news.p.rapidapi.com',
+      'x-rapidapi-key': 'b8d2430d88msh471842c86e1fe28p18fc6ejsn580afcd244c0',
+    },
+  }
+  const style = {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '900px',
+  }
+
+  useEffect(() => {
+    refetch(options)
+  }, [])
+  console.log(data?.articles)
+  let size = 4
+  const articles = data
+    ? data.articles.map((article, i) => {
+        size = i < 2 ? 6 : 4
+
+        return (
+          <div className={`column post is-${size}`} key={i}>
+            <article className="columns is-multiline">
+              <div className="column is-12 post-img container-media">
+                <img
+                  src={article.media}
+                  alt="Featured"
+                  className="article-media"
+                />
+              </div>
+
+              <div className="column is-12 featured-content ">
+                <h3 className="heading post-category">{article.clean_url}</h3>
+                <h1 className="title post-title article-title">
+                  {article.title}
+                </h1>
+                <p className="post-excerpt article-summary">
+                  {article.summary}
+                </p>
+                <br />
+                <a
+                  href={article.link}
+                  target="_blank"
+                  className="button is-primary"
+                  rel="noopener noreferrer"
+                >
+                  Read More
+                </a>
+              </div>
+            </article>
+          </div>
+        )
+      })
+    : ''
+  return (
     <article
-    className="tile is-child box"
-    style={{
-      background:'#d0f3ff',
-      backgroundImage:'url(https://i.ibb.co/QQgTSJ5/photo-1643101311704-933e4ed268c4-ixlib-rb-1-2.jpg)',
-      backgroundSize: 'cover',
-    }}
-  >
-<div className="container has-text-centered">
-<div className="columns is-vcentered">
-  <div className="column is-5">
-    <figure className="image is-4by3">
-      <img src="https://picsum.photos/800/600/?random" alt="Description" />
-    </figure>
-  </div>
-  <div className="column is-6 is-offset-1">
-    <h1 className="title is-2">Cryptocurrency News</h1>
-    <h2 className="subtitle is-4">
-      Let this cover page describe a product or service.
-    </h2>
-    <br />
-    <p className="has-text-centered">
-      <a className="button is-medium is-info is-outlined">Learn more</a>
-    </p>
-  </div>
-</div>
-</div>
-<section className="container">
-
-<div className="columns features">
-  <div className="column is-4 modal-button" data-target="modal-card">
-    <div className="card is-shady">
-      <div className="card-image">
-        <figure className="image is-4by3">
+      className="tile is-child box"
+      style={{
+        background: '#d0f3ff',
+        backgroundImage:
+          'url(https://i.ibb.co/QQgTSJ5/photo-1643101311704-933e4ed268c4-ixlib-rb-1-2.jpg)',
+        backgroundSize: 'cover',
+      }}
+    >
+      <article className="columns featured">
+        <div className="column is-7 post-img ">
           <img
-            src="https://res.cloudinary.com/ameo/image/upload/v1568711475/pexels-photo-1302883_fjje0f.jpg"
-            alt="Placeholder image"
+            src="https://images.unsplash.com/photo-1640457298166-fe3eddec2d5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
+            alt=""
           />
-        </figure>
-      </div>
-      <div className="card-content">
-        <div className="content">
-          <h4>
-            Click anywhere on card to <br />
-            expand into modal card
-          </h4>
-          <p>
-            Purus semper eget duis at tellus at urna condimentum mattis. Non
-            blandit massa enim nec. Integer enim neque volutpat ac tincidunt
-            vitae semper quis. Accumsan tortor posuere ac ut consequat semper
-            viverra nam.
-          </p>
-          <span className="button is-link modal-button">Modal card</span>
         </div>
-      </div>
-    </div>
-  </div>
-  <div className="column is-4">
-    <div className="card is-shady">
-      <div className="card-image">
-        <figure className="image is-4by3">
-          <img
-            src="https://source.unsplash.com/hLyd1LukQ7E"
-            alt="butterfly image"
-            className="modal-button"
-            data-target="modal-image4"
-          />
-        </figure>
-      </div>
-      <div className="card-content  modal-button" data-target="modal-card2">
-        <div className="content">
-          <h4>
-            Click anywhere on card to <br />
-            expand into modal card - header image expands into bigger image
-          </h4>
-          <p>
-            Purus semper eget duis at tellus at urna condimentum mattis. Non
-            blandit massa enim nec. Integer enim neque volutpat ac tincidunt
-            vitae semper quis.
-          </p>
-          <span className="button is-link modal-button">Modal card</span>
+        <div className="column is-5 featured-content va">
+          <div>
+            <h3 className="heading post-category">Category Name</h3>
+            <h1 className="title post-title">Cryptocurrency News</h1>
+            <p className="post-excerpt">
+            BRANOCryptocurrency is the go-to website for your cryptocurrency
+              news. Covering crypto trends, coin price updates, and global
+              regulatory laws you won't miss a beat in the crypto world. •
+              Advertise with CryptoCurrencyNews • Write for CryptoCurrencyNews •
+              Submit your Company News INVESTOR NEWS How Risky Is Bitcoin? What
+              to Look Out For
+            </p>
+            <br />
+            <a href="#" className="button is-primary">
+              Read More
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div className="column is-4">
-    <div className="card is-shady">
-      <div className="card-image">
-        <figure className="image is-4by3">
-          <img
-            src="https://source.unsplash.com/hLyd1LukQ7E"
-            alt="butterfly image"
-            className="modal-button"
-            data-target="modal-image4"
-          />
-        </figure>
-      </div>
-      <div className="card-content  modal-button" data-target="modal-card2">
-        <div className="content">
-          <h4>
-            Click anywhere on card to <br />
-            expand into modal card - header image expands into bigger image
-          </h4>
-          <p>
-            Purus semper eget duis at tellus at urna condimentum mattis. Non
-            blandit massa enim nec. Integer enim neque volutpat ac tincidunt
-            vitae semper quis.
-          </p>
-          <span className="button is-link modal-button">Modal card</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-</section>
-  </article>
-  );
+      </article>
+      <div className="columns is-multiline">{articles}</div>
+    </article>
+  )
 }
 
-export default News;
+export default News

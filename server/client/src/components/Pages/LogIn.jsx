@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { UseAxios,useFetch } from '../CustomHooks/getHooks'
 import userContext from '../../Context/userContext'
-import {setLocalStorage,getAxios} from '../Tools/Tools'
+import {setLocalStorage} from '../Tools/Tools'
 import { Link } from 'react-router-dom'
 import { BgLogIn } from '../Tools/getImges'
 
