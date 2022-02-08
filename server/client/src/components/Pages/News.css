@@ -13,3 +13,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.modal-active{
+  width: 100%;
+  height: 100%;
+}

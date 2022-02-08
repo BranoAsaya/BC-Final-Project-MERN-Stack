@@ -6,14 +6,15 @@ import './News.css'
 function News() {
   const { state, dispatch } = useContext(userContext)
   const { data, loading, error, refetch } = useRequestAxios(null)
-
+  const [isActive, setIsActive] = useState(false)
+  const NEWS_KEY = process.env.REACT_APP_RAPID_KEY
   const options = {
     method: 'GET',
     url: 'https://free-news.p.rapidapi.com/v1/search',
     params: { q: 'cryptocurrency', lang: 'en' },
     headers: {
       'x-rapidapi-host': 'free-news.p.rapidapi.com',
-      'x-rapidapi-key': 'b8d2430d88msh471842c86e1fe28p18fc6ejsn580afcd244c0',
+      'x-rapidapi-key': NEWS_KEY,
     },
   }
   const style = {
@@ -26,7 +27,7 @@ function News() {
   useEffect(() => {
     refetch(options)
   }, [])
-  console.log(data?.articles)
+
   let size = 4
   const articles = data
     ? data.articles.map((article, i) => {
@@ -88,7 +89,7 @@ function News() {
             <h3 className="heading post-category">Category Name</h3>
             <h1 className="title post-title">Cryptocurrency News</h1>
             <p className="post-excerpt">
-            BRANOCryptocurrency is the go-to website for your cryptocurrency
+              BRANOCryptocurrency is the go-to website for your cryptocurrency
               news. Covering crypto trends, coin price updates, and global
               regulatory laws you won't miss a beat in the crypto world. •
               Advertise with CryptoCurrencyNews • Write for CryptoCurrencyNews •
@@ -96,13 +97,56 @@ function News() {
               to Look Out For
             </p>
             <br />
-            <a href="#" className="button is-primary">
-              Read More
-            </a>
+            <button
+              href="#"
+              className="button is-primary"
+              onClick={() => setIsActive(!isActive)}
+            >
+             Newsletter
+            </button>
           </div>
         </div>
       </article>
-      <div className="columns is-multiline">{articles}</div>
+
+      <div className="columns is-multiline">
+        <div
+          className={`modal ${isActive ? 'is-active' : ''} is-clipped modal-active`}
+        >
+          <div className="modal-background"></div>
+          <div className="modal-content">
+            <section className="section has-background-primary">
+              <p className="title">Get Updated</p>
+              <p className="subtitle">about Crypto News</p>
+
+              <div className="mx-auto box p-6 has-background-light has-text-centered">
+                <h4 className="is-size-5 mb-2 has-text-weight-bold">
+                  Join Our Mailing List!
+                </h4>
+                <p className="has-text-grey-dark mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <form action="#">
+                  <input
+                    className="input mb-3"
+                    type="email"
+                    placeholder="Type your e-mail"
+                  />
+                  <button className="button is-primary is-fullwidth">
+                    Action
+                  </button>
+                </form>
+              </div>
+            </section>
+          </div>
+          <button
+            className="modal-close is-large"
+            aria-label="close"
+            onClick={() => setIsActive(!isActive)}
+          ></button>
+        </div>
+
+        {articles}
+      </div>
     </article>
   )
 }
