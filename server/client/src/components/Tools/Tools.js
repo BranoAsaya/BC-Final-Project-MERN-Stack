@@ -1,4 +1,4 @@
 import setLocalStorage from './setLocalStorage'
 import axiosPost from './axiosPost'
-export {setLocalStorage,axiosPost}
+export { setLocalStorage, axiosPost }
 

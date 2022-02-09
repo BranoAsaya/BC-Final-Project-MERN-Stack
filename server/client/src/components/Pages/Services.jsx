@@ -34,7 +34,6 @@ function Services() {
                   crypto world, and also for the experts, we’ve picked the five
                   must-have websites. These sites have to be your home page, or
                   at least added to your favorites bar.
-                  
                 </h2>
               </div>
             </div>

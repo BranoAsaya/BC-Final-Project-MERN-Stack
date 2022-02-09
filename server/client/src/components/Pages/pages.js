@@ -9,4 +9,4 @@ import Trending from './Trending.jsx'
 import SignUp from './SignUp.jsx'
 import LogIn from './LogIn.jsx'
 
-export {Home,News,About,Contact,Convert,Exchange,Services,Trending,SignUp,LogIn};
+export { Home, News, About, Contact, Convert, Exchange, Services, Trending, SignUp, LogIn };

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef ,useContext} from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import userContext from '../../Context/userContext'
-import {setLocalStorage,axiosPost} from '../Tools/Tools'
+import { setLocalStorage, axiosPost } from '../Tools/Tools'
 import UseAxios from '../CustomHooks/UseAxios'
 // import setLocalStorage from '../Tools/setLocalStorage'
 import { Link } from 'react-router-dom'
-import {BgSignUp} from '../Tools/getImges'
+import { BgSignUp } from '../Tools/getImges'
 
 function SignUp() {
   const emailInput = useRef(null)
@@ -21,14 +21,14 @@ function SignUp() {
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
-      dispatch({type:'auth',value:true})
-      axiosPost('/AddUser',{email:response.email,data:response})
+      dispatch({ type: 'auth', value: true })
+      axiosPost('/AddUser', { email: response.email, data: response })
     }
-    if(error&& !response?.email){
+    if (error && !response?.email) {
       alert(`${emailInput.current.value} already registered`)
-     }
-     return ()=>{}
-  }, [response,error])
+    }
+    return () => {}
+  }, [response, error])
   const handelSubmit = () => {
     setUserData({
       email: emailInput.current.value,
@@ -50,18 +50,18 @@ function SignUp() {
 
   return (
     <>
-    {response?.email?<Redirect to={'/'}/>:''}
+      {response?.email ? <Redirect to={'/'} /> : ''}
       <article
         className="tile is-child box"
         style={{
           background: '#8181e1',
-          backgroundImage:`url(${BgSignUp})`,
+          backgroundImage: `url(${BgSignUp})`,
           backgroundSize: 'cover',
         }}
       >
         <div className="hero-body has-text-centered">
           <div className="login">
-            <img src="https://i.ibb.co/fkn9XYz/user.png" width="32px" alt=''/>
+            <img src="https://i.ibb.co/fkn9XYz/user.png" width="32px" alt="" />
             <form>
               <div className="field">
                 <div className="control">
