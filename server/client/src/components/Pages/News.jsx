@@ -102,7 +102,7 @@ function News() {
               className="button is-primary"
               onClick={() => setIsActive(!isActive)}
             >
-             Newsletter
+              Newsletter
             </button>
           </div>
         </div>
@@ -110,7 +110,9 @@ function News() {
 
       <div className="columns is-multiline">
         <div
-          className={`modal ${isActive ? 'is-active' : ''} is-clipped modal-active`}
+          className={`modal ${
+            isActive ? 'is-active' : ''
+          } is-clipped modal-active`}
         >
           <div className="modal-background"></div>
           <div className="modal-content">

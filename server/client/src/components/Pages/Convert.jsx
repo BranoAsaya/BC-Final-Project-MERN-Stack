@@ -5,11 +5,11 @@ import { useRequestAxios } from '../CustomHooks/getHooks'
 function Convert() {
   const { state, dispatch } = useContext(userContext)
   const { data, loading, error, refetch } = useRequestAxios(null)
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(true)
   const [primaryCoin, setPrimaryCoin] = useState('BTC')
   const [SecondaryCoin, setSecondaryCoin] = useState('USD')
-  const [amount, setAmount] = useState(1);
-  const [result, setResult] = useState('');
+  const [amount, setAmount] = useState(1)
+  const [result, setResult] = useState('')
   const EXCHANGE_KEY = process.env.REACT_APP_RAPID_KEY
   const options = {
     method: 'GET',
@@ -24,15 +24,17 @@ function Convert() {
       'x-rapidapi-key': EXCHANGE_KEY,
     },
   }
-const convert =()=>{
-  refetch(options)
-  setFlag(true)
-}
-if(data && flag){
-  setFlag(false)
-  setResult(+data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount)
-}
- 
+  const convert = () => {
+    refetch(options)
+    setFlag(true)
+  }
+  if (data && flag) {
+    setFlag(false)
+    setResult(
+      +data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount,
+    )
+  }
+
   return (
     <article
       className="tile is-child box"
@@ -43,6 +45,12 @@ if(data && flag){
         backgroundSize: 'cover',
       }}
     >
+      <iframe
+        src="https://fxpricing.com/fx-widget/ticker-tape-widget.php?id=358,618,963&border=show&speed=50&click_target=blank&theme=light&tm-cr=FFFFFF&hr-cr=00000013&by-cr=28A745&sl-cr=DC3545&flags=circle&d_mode=compact-name&column=ask,bid,spread&lang=en&font=Arial, sans-serif"
+        width="100%"
+        height={85}
+        style={{ border: 'unset' }}
+      />
       <section className="container">
         <div className="columns is-multiline">
           <div className="column is-8 is-offset-2 register">
@@ -63,7 +71,10 @@ if(data && flag){
               <div className="column right has-text-centered">
                 <div className="field has-addons">
                   <p className="control">
-                    <span className="select" onChange={(e)=>setPrimaryCoin(e.target.value)}>
+                    <span
+                      className="select"
+                      onChange={(e) => setPrimaryCoin(e.target.value)}
+                    >
                       <select>
                         <option>BTC</option>
                         <option>ETH</option>
@@ -79,7 +90,7 @@ if(data && flag){
                       className="input"
                       type="number"
                       placeholder="Amount"
-                      onChange={(e)=>setAmount(+e.target.value)}
+                      onChange={(e) => setAmount(+e.target.value)}
                       value={amount}
                     />
                   </p>
@@ -87,7 +98,9 @@ if(data && flag){
                 <div className="field has-addons">
                   <p className="control">
                     <span className="select">
-                      <select onChange={(e)=>setSecondaryCoin(e.target.value)}>
+                      <select
+                        onChange={(e) => setSecondaryCoin(e.target.value)}
+                      >
                         <option>USD</option>
                         <option>BTC</option>
                         <option>ETH</option>
@@ -104,12 +117,14 @@ if(data && flag){
                       placeholder="Exchange Rate"
                       disabled={true}
                       value={result}
-                      onChange={()=>{}}
+                      onChange={() => {}}
                     />
                   </p>
                 </div>
-                <button className="button is-primary is-large"
-                onClick={()=>convert()}>
+                <button
+                  className="button is-primary is-large"
+                  onClick={() => convert()}
+                >
                   <span className="icon">
                     <i className="fa fa-btc"></i>
                   </span>
@@ -118,16 +133,16 @@ if(data && flag){
               </div>
             </div>
             <article className="message is-info">
-  <div className="message-header">
-    <p>Info</p>
-    <button className="delete" aria-label="delete" />
-  </div>
-  <div className="message-body">
-  {error?JSON.stringify(error.message)+'5 requests per minute':'working'}
-  </div>
-</article>
-
-            
+              <div className="message-header">
+                <p>Info</p>
+                <button className="delete" aria-label="delete" />
+              </div>
+              <div className="message-body">
+                {error
+                  ? JSON.stringify(error.message) + '5 requests per minute'
+                  : 'working'}
+              </div>
+            </article>
           </div>
         </div>
       </section>
