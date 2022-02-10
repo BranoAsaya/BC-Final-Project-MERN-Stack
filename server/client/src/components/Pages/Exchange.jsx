@@ -61,7 +61,7 @@ function Exchange() {
         name="TickerTape"
         src="https://darqube.com/external-embedding/ticker-tape?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3aWRnZXQiOnsiYXNzZXRfY2xhc3NlcyI6WyJDUllQVE8iXX0sIndfdHlwZSI6IlRpY2tlclRhcGUiLCJmZV9jZmciOnsid2lkdGgiOjExMDAsImhlaWdodCI6MzczLCJiYWNrZ3JvdW5kQ29sb3IiOiJyZ2JhKDIxLCAyNSwgMzAsIDEpIiwiZm9udENvbG9yIjoicmdiYSgyNTUsIDI1NSwgMjU1LCAxKSIsInJlbW92ZVdhdGVybWFyayI6ZmFsc2UsInN5bWJvbHMiOlt7InN5bWJvbCI6IkVVUlVTRC5PQU5EQSIsIm5hbWUiOiJFVVIvVVNEIn0seyJzeW1ib2wiOiJHQlBVU0QuT0FOREEiLCJuYW1lIjoiR0JQL1VTRCJ9LHsic3ltYm9sIjoiQlRDVVNEVC5CSU5BTkNFIiwibmFtZSI6IkJUQyJ9LHsic3ltYm9sIjoiRVRIVVNEVC5CSU5BTkNFIiwibmFtZSI6IkVUSCJ9LHsic3ltYm9sIjoiWEFVVVNELk9BTkRBIiwibmFtZSI6IkdvbGQifSx7InN5bWJvbCI6IlhBR1VTRC5PQU5EQSIsIm5hbWUiOiJTaWx2ZXIifSx7InN5bWJvbCI6IkFBUEwuVVMiLCJuYW1lIjoiQUFQTCJ9LHsic3ltYm9sIjoiVFNMQS5VUyIsIm5hbWUiOiJUU0xBIn0seyJzeW1ib2wiOiJNU0ZULlVTIiwibmFtZSI6Ik1TRlQifSx7InN5bWJvbCI6IkFNWk4uVVMiLCJuYW1lIjoiQU1aTiJ9LHsic3ltYm9sIjoiVVNESlBZLk9BTkRBIiwibmFtZSI6IlVTRC9KUFkifV0sImNvbnRyb2xUeXBlIjoibGVmdC1jb250cm9sIiwiaXNPcGVuIjpmYWxzZSwiaXNBdXRvc2l6ZSI6ZmFsc2V9LCJleHAiOjE2NTIyMTg5NjUsInN1YiI6ImFjY2VzcyJ9.lxDLxZ9ZbWdEG4R-uChN_DQztCC2Dhwht_t-YS-spug"
         id="TickerTape"
-        width={1100}
+        width={'100%'}
         height={50}
         scrolling="no"
       />
