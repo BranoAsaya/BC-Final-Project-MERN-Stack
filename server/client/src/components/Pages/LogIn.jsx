@@ -35,7 +35,9 @@ function LogIn() {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({ type: 'auth', value: true })
       const obj = UsersData.find((user) => user.email === response.email)
+      if(obj._id){
       refetch(`/Users/FindUser/${obj._id}`)
+      }
     }
 
     if (error && !response?.email) {
