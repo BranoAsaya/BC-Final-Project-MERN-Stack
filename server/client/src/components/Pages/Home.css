@@ -1,0 +1,97 @@
+
+.crypto-card{
+    width: 250px;
+    height: 230px;
+    background: white;
+    -webkit-box-shadow: 0px 3px 8px 0px rgba(194,192,194,1);
+    -moz-box-shadow: 0px 3px 8px 0px rgba(194,192,194,1);
+    box-shadow: 0px 3px 2px 0px rgba(240,240,240,1);
+    border-radius: 6px;
+    transition: .3s;
+    margin-left: 15px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(245, 245, 245);
+  }
+  
+  .crypto-card:hover{
+    transform: translateY(-1px);
+    -webkit-box-shadow: 0px 3px 6px 2px rgba(240,240,240,1);
+    -moz-box-shadow: 0px 3px 6px 2px rgba(240,240,240,1);
+    box-shadow: 0px 3px 6px 2px rgba(240,240,240,1);
+  }
+  
+  .crypto-card .body{
+    width: 100%;
+    border-top: 1px solid rgb(240, 240, 240);
+    padding: 10px;
+  }
+  
+  .crypto-card .logo-sprite{
+    width: 29px;
+    height: 29px;
+    margin: 10px;
+  }
+  
+  .crypto-symbol{
+    border-left: 1px solid rgb(220, 220, 220);
+    padding-left: 10px;
+    font-size: 1.3rem;
+  /*   font-family: 'Loto', sans-serif; */
+    letter-spacing: 5px;
+    text-transform: uppercase;
+  /*   color: #3c3c3c; */
+    font-weight: 500;
+    color: rgb(70, 70, 70);
+    padding-bottom: 4px;
+    position: relative;
+    top: 4px;
+  }
+  
+  .crypto-card .price-label{
+    width: 100%;
+    text-align: left;
+    color: rgb(190, 190, 190);
+    font-weight: 500;
+    font-size: .8rem;
+  }
+   .crypto-card .price{
+    font-size: 1.5rem;
+    font-weight: 100;
+    right: -60px;
+    top: 4px;
+    text-align: right;
+  }
+  
+   .crypto-card .volume{
+    font-size: 1.1rem;
+    font-weight: 100;
+    right: -60px;
+    top: 4px;
+    text-align: right;
+  }
+  
+  .crypto-card .volume-label{
+    width: 100%;
+    text-align: left;
+    color: rgb(190, 190, 190);
+    font-weight: 500;
+    font-size: .8rem;
+  }
+   .crypto-card .cap{
+    font-size: 1.1rem;
+    font-weight: 100;
+    right: -60px;
+    top: 4px;
+    text-align: right;
+  }
+  
+  .crypto-card .cap-label{
+    width: 100%;
+    text-align: left;
+    color: rgb(190, 190, 190);
+    font-weight: 500;
+    font-size: .8rem;
+    
+  }
+  

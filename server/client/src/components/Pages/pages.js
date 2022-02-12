@@ -8,5 +8,6 @@ import Services from './Services.jsx'
 import Trending from './Trending.jsx'
 import SignUp from './SignUp.jsx'
 import LogIn from './LogIn.jsx'
-
-export { Home, News, About, Contact, Convert, Exchange, Services, Trending, SignUp, LogIn };
+import ForgotPassword from "./ForgotPassword";
+import Admin from "./Admin";
+export { Home, News, About, Contact, Convert, Exchange, Services, Trending, SignUp, LogIn ,ForgotPassword,Admin};

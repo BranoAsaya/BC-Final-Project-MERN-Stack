@@ -5,26 +5,27 @@ import userContext from '../../Context/userContext'
 import { setLocalStorage } from '../Tools/Tools'
 import { Link } from 'react-router-dom'
 import { BgLogIn } from '../Tools/getImges'
+import {ForgotPassword} from './pages'
 
 function LogIn() {
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
   const [userData, setUserData] = useState(null)
   const [isDisabled, setIsDisabled] = useState(true)
-  const [newUrl, setNewUrl] = useState(null)
+  const [flag, setFlag] = useState(false)
   const { state, dispatch } = useContext(userContext)
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
   const { UsersData } = state
-  const { data, refetch } = useFetch(newUrl)
+  const { data, refetch } = useFetch(null)
   useEffect(() => {
-    if (data) {
-      dispatch({ type: 'User', value: data })
+    if (data?.data) {
+      dispatch({ type: 'User', value: data.data })
     }
     return () => {
-      if (data) {
-        dispatch({ type: 'User', value: data })
+      if (data?.data) {
+        dispatch({ type: 'User', value: data.data})
       }
     }
   }, [data])
@@ -121,9 +122,8 @@ function LogIn() {
             <nav className="level">
               <div className="level-item has-text-centered">
                 <div>
-                  <a href="#" className="has-text-white">
-                    Forgot Password?
-                  </a>
+                  <p className="has-text-white" onClick={()=>setFlag(!flag)}>Forgot Password?</p>
+                  <ForgotPassword flag={flag} setFlag={setFlag}/>
                 </div>
               </div>
               <div className="level-item has-text-centered">

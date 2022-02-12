@@ -15,6 +15,7 @@ import {
   Trending,
   SignUp,
   LogIn,
+  Admin
 } from '../Pages/pages.js'
 
 
@@ -71,6 +72,11 @@ function Layout() {
           exact
           path={'/SignUp'}
           render={() => <SideBar page={<SignUp />} />}
+        />
+          <Route
+          exact
+          path={'/Admin'}
+          render={() => <SideBar page={<Admin />} />}
         />
         <Redirect to="/" />
       </Switch>

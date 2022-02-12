@@ -77,6 +77,7 @@ function News() {
         backgroundSize: 'cover',
       }}
     >
+      
       <article className="columns featured">
         <div className="column is-7 post-img ">
           <img

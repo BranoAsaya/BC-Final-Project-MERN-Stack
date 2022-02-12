@@ -3,26 +3,27 @@ import { Redirect } from 'react-router-dom'
 import userContext from '../../Context/userContext'
 import { setLocalStorage, axiosPost } from '../Tools/Tools'
 import UseAxios from '../CustomHooks/UseAxios'
-// import setLocalStorage from '../Tools/setLocalStorage'
 import { Link } from 'react-router-dom'
 import { BgSignUp } from '../Tools/getImges'
+import {ForgotPassword} from './pages'
 
 function SignUp() {
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
   const confirmPasswordInput = useRef(null)
   const [isDisabled, setIsDisabled] = useState(true)
+  const [flag, setFlag] = useState(false)
   const [userData, setUserData] = useState(null)
   const { state, dispatch } = useContext(userContext)
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
-
   useEffect(() => {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({ type: 'auth', value: true })
       axiosPost('/AddUser', { email: response.email, data: response })
+      dispatch({ type: 'User', value: response })
     }
     if (error && !response?.email) {
       alert(`${emailInput.current.value} already registered`)
@@ -123,9 +124,8 @@ function SignUp() {
             <nav className="level">
               <div className="level-item has-text-centered">
                 <div>
-                  <a href="#" className="has-text-white">
-                    Forgot Password?
-                  </a>
+                <p className="has-text-white" onClick={()=>setFlag(!flag)}>Forgot Password?</p>
+                  <ForgotPassword flag={flag} setFlag={setFlag}/>
                 </div>
               </div>
               <div className="level-item has-text-centered">

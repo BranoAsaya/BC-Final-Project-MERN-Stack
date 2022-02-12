@@ -61,6 +61,31 @@ function FindUser(req, res) {
       throw err
     });
 }
+function addMassage(req, res) {
+  const body = req.body;
+  console.log(body,'body');
+  const params = req.params.id;
+  const object = {email: params };
+  const update = {
+    $set: {
+      'data.kind':body
+    },
+  };
+  client
+    .then((data) => {
+      const database = data.db(DB);
+      database
+        .collection(collection)
+        .updateOne(object,update)
+        .then((docs) => {
+          res.send(docs)
+        });
+    })
+    .catch((err) => {
+      res.status(404).send({ error: { message: 'No  Found' } });
+      throw err
+    });
+}
 
-const Database = { UsersData, AddUser, FindUser }
+const Database = { UsersData, AddUser, FindUser,addMassage }
 export default Database

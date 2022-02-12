@@ -25,6 +25,10 @@ app.post("/AddUser", (req, res) => {
 app.get("/Users/FindUser/:id", (req, res) => {
   Database.FindUser(req, res);
 });
+app.patch("/Users/addMassage/:id", (req, res) => {
+  Database.addMassage(req, res);
+});
+
 app.use(express.static(path.join(__dirname, "client", "build")));
 app.get("*", (req, resp) => {
   resp.sendFile(path.join(__dirname, "client", "build", "index.html"));

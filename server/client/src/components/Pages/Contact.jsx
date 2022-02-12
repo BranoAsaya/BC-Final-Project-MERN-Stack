@@ -1,7 +1,30 @@
-import React from 'react'
+import React, { useContext, useRef, useState } from 'react'
+import userContext from '../../Context/userContext'
 import { BgContact } from '../Tools/getImges'
+import { UseAxios } from '../CustomHooks/getHooks'
+import { useRequestAxios } from '../CustomHooks/getHooks'
 
 function Contact() {
+  const { state, dispatch } = useContext(userContext)
+  const { data, loading, error, refetch } = useRequestAxios(null)
+  const nameRef = useRef('')
+  const titleRef = useRef('')
+  const massageRef = useRef('')
+  const email = JSON.parse(localStorage.getItem('email'))
+
+  const handelSubmit = () => {
+    const options = {
+      method: 'PATCH',
+      url: `/Users/addMassage/${email}`,
+      data: {
+        name: nameRef.current?.value,
+        title: titleRef.current?.value,
+        message: massageRef.current?.value,
+      },
+    }
+    refetch(options)
+  }
+  console.log(data)
   return (
     <article
       className="tile is-child box"
@@ -17,8 +40,7 @@ function Contact() {
             <div className="column is-two-thirds has-text-left">
               <h1 className="title is-1">Contact Us</h1>
               <p className="is-size-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-                eligendi soluta voluptate facere molestiae consequatur.
+                To contact us, please subscribe and we will get your message
               </p>
               <div className="social-media">
                 <a
@@ -48,25 +70,40 @@ function Contact() {
               <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
-                  <input className="input is-medium" type="text" />
+                  <input
+                    className="input is-medium"
+                    type="text"
+                    ref={nameRef}
+                  />
                 </div>
               </div>
               <div className="field">
-                <label className="label">Email</label>
+                <label className="label">Title</label>
                 <div className="control">
-                  <input className="input is-medium" type="text" />
+                  <input
+                    className="input is-medium"
+                    type="text"
+                    ref={titleRef}
+                  />
                 </div>
               </div>
               <div className="field">
                 <label className="label">Message</label>
                 <div className="control">
-                  <textarea className="textarea is-medium" defaultValue={''} />
+                  <textarea
+                    className="textarea is-medium"
+                    defaultValue={''}
+                    ref={massageRef}
+                  />
                 </div>
               </div>
               <div className="control">
                 <button
                   type="submit"
                   className="button is-link is-fullwidth has-text-weight-medium is-medium"
+                  disabled={!state.auth}
+                  title={'sign up / log in'}
+                  onClick={handelSubmit}
                 >
                   Send Message
                 </button>

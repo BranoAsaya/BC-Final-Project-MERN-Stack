@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react'
 import Layout from './components/Layout/Layout.jsx';
 import userContext from './Context/userContext.js';
 import { Reducer, initialState } from './Reducer/dataReducer.js'
-import useFetch from './components/CustomHooks/useFetch.jsx';
+import {useFetch} from './components/CustomHooks/getHooks'
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState)
   const { data } = useFetch('/Users')

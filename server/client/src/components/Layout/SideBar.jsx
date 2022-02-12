@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function SideBar({ page }) {
+  const email = JSON.parse(localStorage.getItem('email'))
+
   return (
     <>
       <div className="columns is-fullheight">
@@ -13,7 +15,7 @@ function SideBar({ page }) {
                 <Link to={'/Services'}>
                   {' '}
                   <button className=" button is-info is-outlined  ">
-                  Services&nbsp;&nbsp;
+                    Services&nbsp;&nbsp;
                   </button>
                 </Link>
               </li>
@@ -21,7 +23,7 @@ function SideBar({ page }) {
                 <Link to={'/Convert'}>
                   {' '}
                   <button className="  button is-info is-outlined ">
-                  Convert&nbsp;&nbsp;
+                    Convert&nbsp;&nbsp;
                   </button>
                 </Link>
               </li>
@@ -41,6 +43,18 @@ function SideBar({ page }) {
                   </button>
                 </Link>
               </li>
+              {email === 'admin@gmail.com' ? (
+                <li>
+                  <Link to={'/Admin'}>
+                    {' '}
+                    <button className=" button is-info is-outlined ">
+                      Admin&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button>
+                  </Link>
+                </li>
+              ) : (
+                ''
+              )}
             </ul>
           </aside>
         </div>
@@ -54,9 +68,7 @@ function SideBar({ page }) {
               backgroundBlendMode: 'soft-light',
             }}
           >
-            <div className="tile is-parent" >
-         {page}
-            </div>
+            <div className="tile is-parent">{page}</div>
           </section>
         </div>
       </div>

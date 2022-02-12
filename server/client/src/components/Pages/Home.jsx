@@ -1,7 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import userContext from '../../Context/userContext'
+import { Redirect } from 'react-router-dom'
+
+import './Home.css'
 function Home() {
   const { state, dispatch } = useContext(userContext)
+  const [flag, setFlag] = useState(false)
+
   return (
     <article
       className="tile is-child box"
@@ -12,6 +17,8 @@ function Home() {
         backgroundSize: 'cover',
       }}
     >
+            {flag ? <Redirect to={'/Services'} /> : ''}
+
       <div className="container">
         <div className="columns  is-vcentered reverse-columns">
           <div
@@ -20,27 +27,27 @@ function Home() {
           >
             <h1 className="title titled is-1 mb-6">Evolving with technology</h1>
             <div className="buttons">
-              <button className="button is-yellow">Start Exploring </button>
+              <button className="button is-yellow" onClick={()=>setFlag(true)}>Start Exploring </button>
             </div>
           </div>
           <div
             data-aos="fade-right"
             className="column is-10-mobile is-10-tablet is-4-desktop is-7-widescreen is-4-fullhd is-offset-1-fullhd aos-init aos-animate"
-          ></div>
+          >
+            {' '}
+          </div>
         </div>
       </div>
       <section className="hero is-medium ">
-        <div className="hero-body">
-          {/* <p className="title">Medium hero</p>
-    <p className="subtitle">Medium subtitle</p> */}
-        </div>
+        <div className="hero-body"></div>
       </section>
+   
 
       <section className="featured">
         <div className="level">
           <div className="level-left">
             <div className="level-item">
-              <h2 className="subtitle is-underlined	has-text-weight-bold">
+              <h2 className="subtitle is-underlined	has-text-weight-bold" >
                 Explore
               </h2>
             </div>
@@ -93,6 +100,7 @@ function Home() {
           </div>
         </div>
       </section>
+      
     </article>
   )
 }

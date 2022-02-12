@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import userContext from '../../Context/userContext'
-import { useRequestAxios } from '../CustomHooks/getHooks'
+import { useRequestAxios ,useFetch} from '../CustomHooks/getHooks'
 function Exchange() {
   const { state, dispatch } = useContext(userContext)
   const { data, loading, error, refetch } = useRequestAxios(null)
@@ -14,7 +14,6 @@ function Exchange() {
     refetch(options)
     return () => {}
   }, [])
-
   const handelChange = (e) => {
     setSearch(e.target.value)
   }
@@ -26,21 +25,23 @@ function Exchange() {
 
   const coins = filterCoins ? (
     filterCoins.map((coin, i) => {
-      let random_boolean = Math.random() < 0.5
       return (
         <tr key={i} style={{ backgroundColor: '#23252f' }}>
           <td>
             <img src={coin.image} alt="" className="image is-24x24" />
           </td>
           <td className="has-text-light">{coin.symbol}</td>
-          <td className="has-text-info is-hidden-mobile">{coin.name}</td>
+          <td className="has-text-info is-hidden-mobile">
+            <a href={`https://coinmarketcap.com/currencies/${coin.name}`} target={'_blank'}>{coin.name}</a>
+            
+            </td>
           <td className="has-text-link is-hidden-mobile">
             {coin.current_price}
           </td>
           <td
-            className={random_boolean ? 'has-text-danger' : 'has-text-success'}
+            className={coin.price_change_percentage_24h < 0 ? 'has-text-danger' : 'has-text-success'}
           >
-            {coin.atl}
+            {coin.price_change_percentage_24h}
           </td>
         </tr>
       )
