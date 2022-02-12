@@ -17,7 +17,7 @@ function LogIn() {
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
-  const { UsersData } = state
+  const { UsersData ,auth} = state
   const { data, refetch } = useFetch(null)
   useEffect(() => {
     if (data?.data) {
@@ -66,7 +66,7 @@ function LogIn() {
 
   return (
     <>
-      {response?.email && data ? <Redirect to={'/'} /> : ''}
+      {response?.email && auth ? <Redirect to={'/'} /> : ''}
       <article
         className="tile is-child box"
         style={{
