@@ -23,7 +23,6 @@ function Convert() {
       'x-rapidapi-key': EXCHANGE_KEY,
     },
   }
-  console.log(state.auth)
   const convert = () => {
     refetch(options)
     setFlag(true)

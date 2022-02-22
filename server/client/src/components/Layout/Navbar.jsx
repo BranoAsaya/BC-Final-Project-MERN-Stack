@@ -2,11 +2,13 @@
 import React, { useContext, useState } from 'react'
 import userContext from '../../Context/userContext'
 import { Link } from 'react-router-dom'
+import {DeleteAccount} from '../Pages/pages.js'
+
 function Navbar() {
   const [isActive, setIsActive] = useState(false)
   const { state, dispatch } = useContext(userContext)
+  const [flag, setFlag] = useState(false)
   const closeNav=()=>setIsActive(!isActive)
-  // console.log(state.auth)
   return (
     <>
       <nav
@@ -84,7 +86,10 @@ function Navbar() {
                   <i className="fa fa-user"></i>Account
                 </a>
                 <div className="navbar-dropdown">
-                  <a className="navbar-item">Settings</a>
+                  <a className="navbar-item" onClick={() => setFlag(!flag)}>
+                  Settings
+                  <DeleteAccount flag={flag} setFlag={setFlag} setIsActive={setIsActive}/>
+                    </a>
                   <hr className="navbar-divider" />
                   <a className="navbar-item" onClick={()=>{
                      dispatch({type:'auth',value:false})

@@ -34,7 +34,9 @@ function LogIn() {
     if (response?.email) {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({ type: 'auth', value: true })
-      const obj = UsersData.find((user) => user.email === response.email)
+      const obj =Array.isArray(UsersData)
+        ? UsersData?.find((user) => user.email === response?.email)
+        : {}
       if (obj?._id) {
         refetch(`/Users/FindUser/${obj._id}`)
       }
@@ -43,7 +45,6 @@ function LogIn() {
     if (error && !response?.email) {
       alert('email/Password incorrect')
     }
-    return () => {}
   }, [response, error])
 
   const handelSubmit = () => {

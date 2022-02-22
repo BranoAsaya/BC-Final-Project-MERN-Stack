@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import userContext from '../../Context/userContext'
-import { useRequestAxios ,useFetch} from '../CustomHooks/getHooks'
+import { useRequestAxios, useFetch } from '../CustomHooks/getHooks'
 function Exchange() {
   const { state, dispatch } = useContext(userContext)
   const { data, loading, error, refetch } = useRequestAxios(null)
@@ -32,14 +32,22 @@ function Exchange() {
           </td>
           <td className="has-text-light">{coin.symbol}</td>
           <td className="has-text-info is-hidden-mobile">
-            <a href={`https://coinmarketcap.com/currencies/${coin.name}`} target={'_blank'}>{coin.name}</a>
-            
-            </td>
+            <a
+              href={`https://coinmarketcap.com/currencies/${coin.name}`}
+              target={'_blank'}
+            >
+              {coin.name}
+            </a>
+          </td>
           <td className="has-text-link is-hidden-mobile">
             {coin.current_price}
           </td>
           <td
-            className={coin.price_change_percentage_24h < 0 ? 'has-text-danger' : 'has-text-success'}
+            className={
+              coin.price_change_percentage_24h < 0
+                ? 'has-text-danger'
+                : 'has-text-success'
+            }
           >
             {coin.price_change_percentage_24h}
           </td>

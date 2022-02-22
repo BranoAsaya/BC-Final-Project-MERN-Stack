@@ -63,7 +63,6 @@ function FindUser(req, res) {
 }
 function addMassage(req, res) {
   const body = req.body;
-  console.log(body,'body');
   const params = req.params.id;
   const object = {email: params };
   const update = {

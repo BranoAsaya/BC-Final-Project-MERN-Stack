@@ -10,4 +10,5 @@ import SignUp from './SignUp.jsx'
 import LogIn from './LogIn.jsx'
 import ForgotPassword from "./ForgotPassword";
 import Admin from "./Admin";
-export { Home, News, About, Contact, Convert, Exchange, Services, Trending, SignUp, LogIn ,ForgotPassword,Admin};
+import DeleteAccount from "./DeleteAccount";
+export { Home, News, About, Contact, Convert, Exchange, Services, Trending, SignUp, LogIn, ForgotPassword, Admin, DeleteAccount };

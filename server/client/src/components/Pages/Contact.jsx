@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from 'react'
 import userContext from '../../Context/userContext'
 import { BgContact } from '../Tools/getImges'
-import { UseAxios } from '../CustomHooks/getHooks'
 import { useRequestAxios } from '../CustomHooks/getHooks'
 
 function Contact() {
@@ -24,7 +23,6 @@ function Contact() {
     }
     refetch(options)
   }
-  console.log(data)
   return (
     <article
       className="tile is-child box"

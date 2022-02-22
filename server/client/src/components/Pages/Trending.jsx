@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import TradingViewWidget, { Themes } from 'react-tradingview-widget'
-import { useRequestAxios } from '../CustomHooks/getHooks'
+// import { useRequestAxios } from '../CustomHooks/getHooks'
 
 function Trending() {
   // const { data, loading, error, refetch } = useRequestAxios('https://www.reddit.com/r/CryptoCurrency.json')
 
-  // console.log(data);
   return (
     <article
       className="tile is-child box"
