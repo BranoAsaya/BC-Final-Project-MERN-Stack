@@ -5,7 +5,7 @@ import userContext from '../../Context/userContext'
 import { setLocalStorage } from '../Tools/Tools'
 import { Link } from 'react-router-dom'
 import { BgLogIn } from '../Tools/getImges'
-import {ForgotPassword} from './pages'
+import { ForgotPassword } from './pages'
 
 function LogIn() {
   const emailInput = useRef(null)
@@ -17,7 +17,7 @@ function LogIn() {
   const FB_KEY = process.env.REACT_APP_FB_KEY
   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FB_KEY}`
   const { response, error, loading } = UseAxios(url, userData)
-  const { UsersData ,auth} = state
+  const { UsersData, auth } = state
   const { data, refetch } = useFetch(null)
   useEffect(() => {
     if (data?.data) {
@@ -25,7 +25,7 @@ function LogIn() {
     }
     return () => {
       if (data?.data) {
-        dispatch({ type: 'User', value: data.data})
+        dispatch({ type: 'User', value: data.data })
       }
     }
   }, [data])
@@ -35,8 +35,8 @@ function LogIn() {
       setLocalStorage({ key: 'email', value: response.email })
       dispatch({ type: 'auth', value: true })
       const obj = UsersData.find((user) => user.email === response.email)
-      if(obj?._id){
-      refetch(`/Users/FindUser/${obj._id}`)
+      if (obj?._id) {
+        refetch(`/Users/FindUser/${obj._id}`)
       }
     }
 
@@ -124,14 +124,16 @@ function LogIn() {
             <nav className="level">
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="has-text-white" onClick={()=>setFlag(!flag)}>Forgot Password?</p>
-                  <ForgotPassword flag={flag} setFlag={setFlag}/>
+                  <p className="has-text-white" onClick={() => setFlag(!flag)}>
+                    Forgot Password?
+                  </p>
+                  <ForgotPassword flag={flag} setFlag={setFlag} />
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
                   <Link to={'/SignUp'} className="has-text-white">
-                    already registered
+                    Join Us
                   </Link>
                 </div>
               </div>

@@ -10,6 +10,7 @@ function App() {
     if (data) {
       dispatch({ type: 'UsersData', value: data })
     }
+    
   }, [data])
   return (
     <>

@@ -23,7 +23,7 @@ function Convert() {
       'x-rapidapi-key': EXCHANGE_KEY,
     },
   }
-  console.log(state.auth);
+  console.log(state.auth)
   const convert = () => {
     refetch(options)
     setFlag(true)
@@ -34,7 +34,7 @@ function Convert() {
       +data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount,
     )
   }
-const isDisabled = !state.auth ? "all":"none"
+  const isDisabled = !state.auth ? 'all' : 'none'
   return (
     <article
       className="tile is-child box"
@@ -49,18 +49,23 @@ const isDisabled = !state.auth ? "all":"none"
         src="https://fxpricing.com/fx-widget/ticker-tape-widget.php?id=358,618,963&border=show&speed=50&click_target=blank&theme=light&tm-cr=FFFFFF&hr-cr=00000013&by-cr=28A745&sl-cr=DC3545&flags=circle&d_mode=compact-name&column=ask,bid,spread&lang=en&font=Arial, sans-serif"
         width="100%"
         height={85}
-        style={{ border: 'unset', pointerEvents:'none'}}
+        style={{ border: 'unset', pointerEvents: 'none' }}
       />
 
       <section
         className="container"
-        style={{ pointerEvents: state.auth ? "all":"none", opacity: !state.auth ? "0.4":"1" }}
+        style={{
+          pointerEvents: state.auth ? 'all' : 'none',
+          opacity: !state.auth ? '0.4' : '1',
+        }}
       >
         <div className="columns is-multiline">
           <div className="column is-8 is-offset-2 register">
             <div className="columns">
               <div className="column left">
-                <h1 className="title is-1">{state.auth ? "Crypto Converter":"Subscribers Only"}</h1>
+                <h1 className="title is-1">
+                  {state.auth ? 'Crypto Converter' : 'Subscribers Only'}
+                </h1>
                 <h2 className="subtitle colored is-4">
                   Convert all types of crypto
                 </h2>

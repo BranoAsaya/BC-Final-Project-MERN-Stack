@@ -41,8 +41,6 @@ function Home() {
       <section className="hero is-medium ">
         <div className="hero-body"></div>
       </section>
-   
-
       <section className="featured">
         <div className="level">
           <div className="level-left">

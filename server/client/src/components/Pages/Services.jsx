@@ -40,16 +40,6 @@ function Services() {
             </div>
           </div>
         </div>
-        <iframe
-  width={'30%'}
-  height={'100%'}
-  src="https://www.youtube.com/embed/wRgNF05Ru2o"
-  title="YouTube video player"
-  frameBorder={0}
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen=""
-/>
-
       </section>
   
       <section className="section" id="services">
